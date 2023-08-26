@@ -1,0 +1,62 @@
+<html>
+<head>
+<title> password Generator App </title>
+<style>
+	* {font-size:40px;}
+	body{background-color:lightblue; }
+</style>
+<script>
+	function gp()
+	{
+		event.preventDefault();
+		let s6 = document.getElementById("s6");
+		let s7 = document.getElementById("s7");
+		let s8 = document.getElementById("s8");
+		let s9 = document.getElementById("s9");
+		let uc = document.getElementById("uc");
+		let di = document.getElementById("di");
+		let msg = document.getElementById("msg");
+		
+		let le = 0;
+		if (s6.checked)		le = 6;
+		else if (s7.checked)	le = 7;
+		else if (s8.checked)	le = 8;
+		else			le = 9;  
+		
+		let text = "abcdefghijklmnopqrstuvwxyz";
+		
+		if(uc.checked)
+			text = text + text.toUpperCase();
+		
+		if(di.checked)
+			text = text + "0123456789";
+		
+		let pw = "";
+		for(let i=1; i <= le; i++)
+		{
+			let r = parseInt(Math.random() * text.length);
+			pw = pw + text[r];
+		}
+		msg.innerHTML = pw;
+	}	
+</script>
+</head>
+
+<body>
+<center>
+<h1> Password Generator App</h1>
+<form onsubmit="gp()">
+	<input type="radio" name="le" value="s6" id="s6" /> 6
+	<input type="radio" name="le" value="s7" id="s7" /> 7
+	<input type="radio" name="le" value="s8" id="s8" checked=true/> 8
+	<input type="radio" name="le" value="s9" id="s9" /> 9
+	<br><br>
+	<input type="checkbox" id="uc" /> Uc
+	<input type="checkbox" id="di" /> Di
+	<br><br>
+	<input type="submit" value="Generate" /> 
+</form>
+	<h1 id="msg" />
+</center>
+</body>
+</html>
